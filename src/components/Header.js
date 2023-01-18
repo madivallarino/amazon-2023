@@ -6,17 +6,22 @@ import {
     ShoppingCartIcon,
 } from "@heroicons/react/24/solid";
 import { signIn, signOut, useSession } from "next-auth/react"
+import { useRouter } from "next/router"
+import { useSelector } from 'react-redux';
+import { selectItems } from '@/slices/basketSlice';
 
 function Header() {
     const { data: session, status } = useSession();
-   
-
+    const router = useRouter();
+    const items = useSelector(selectItems);
+    
   return (
     <header>
         {/* Top */}
         <div className="flex items-center bg-amazon_blue flex-grow py-2">
             <div className="mt-2 flex items-center mx-6 flex-grow sm:flex-grow-0">
                 <Image 
+                    onClick={() => router.push('/')}
                     src="https://links.papareact.com/f90"
                     width={150}
                     height={40}
@@ -41,9 +46,9 @@ function Header() {
                     <p>Returns</p>
                     <p className='font-extrabold md:text-sm'>& Orders</p>
                 </div>
-                <div className='relative link flex items-center'>
+                <div onClick={()=> router.push('/checkout')} className='relative link flex items-center'>
 
-                    <span className='absolute top-0 right-0 md:right-10 h-4 w-4 bg-yellow-400 text-center rounded-full text-black font-bold'>0</span>
+                    <span className='absolute top-0 right-0 md:right-10 h-4 w-4 bg-yellow-400 text-center rounded-full text-black font-bold'>{items.length}</span>
                     <ShoppingCartIcon className='h-10'/>
                     <p className='hidden md:inline mt-2 font-extrabold md:text-sm '>Basket</p>
                 </div>
