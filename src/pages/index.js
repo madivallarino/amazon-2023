@@ -8,9 +8,9 @@ export default function Home({products }) {
   
   return (
     <div className='bg-gray-100'>
-      {/* <Head>
+      <Head>
         <title>Amazon 2023</title>
-      </Head> */}
+      </Head>
 
       <Header />
 
