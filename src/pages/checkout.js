@@ -9,7 +9,7 @@ import Currency from "react-currency-formatter"
 function Checkout() {
     const items = useSelector(selectItems);
     const total = useSelector(selectTotal)
-    const session = useSession();
+    const { data: session, status } = useSession();
   return (
     <div className='bg-gray-100'>
         <Header />
@@ -51,13 +51,14 @@ function Checkout() {
                         <h2 className='whitespace-nowrap'>Subtotal ({items.length} items): 
                             <span className='font-bold'>
                                 <Currency quantity={total}/>
-                            </span></h2>
+                            </span>
+                        </h2>
 
-                            <button 
-                            disabled={!session}
-                            className={`button mt-2 ${!session && 'from-gray-300 to-gray-500 border-gray-200 cursor-not-allowed'}`}>
-                                {!session ? "Sign in to checkout" : "Proceed to checkout"}
-                            </button>
+                        <button 
+                         disabled={!session}
+                         className={`button mt-2 ${!session && 'from-gray-300 to-gray-500 border-gray-200 cursor-not-allowed'}`}>
+                            {!session ? "Sign in to checkout" : "Proceed to checkout"}
+                        </button>
                     </>
                 )}
             </div>
