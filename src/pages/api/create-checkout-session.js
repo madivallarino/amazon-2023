@@ -1,6 +1,6 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 
-export default async function someThing(req, res) => {
+export default async function someThing(req, res){
     const { items, email } = req.body;
 
     const transformedItems = items.map((item)=> ({
